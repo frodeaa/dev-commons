@@ -1,0 +1,21 @@
+Description: |
+  Create an EC2 development instance with vim, git, tmux, mosh and
+  docker installed.
+
+Parameters:
+
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: |
+      Name of an existing EC2 KeyPair to enable SSH access to the
+      instance
+
+Mappings:
+
+  # These are the latest Ubuntu Server 18.04 LTS (HVM) as of 2018-09
+
+  AWSRegionToAMI:
+    eu-west-1:
+      AMI: ami-00035f41c82244dab
+    eu-central-1:
+      AMI: ami-0bdf93799014acdc4
