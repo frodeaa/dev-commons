@@ -194,10 +194,10 @@ Resources:
           packages:
             apt:
               jg: []
-           commands:
-             download_dot_files:
-               command: !Sub |
-                 echo '${DotFilesUrl}'
+            commands:
+              download_dot_files:
+                command: !Sub |
+                  echo '${DotFilesUrl}'
 
     CreationPolicy:
       ResourceSignal:
