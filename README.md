@@ -29,3 +29,18 @@ Use the ```create-dev-env.yml``` CloudFormation template to create the EC2 insta
       --stack-name dev-machine \
       --parameters ParameterKey=KeyName,ParameterValue=MyKeyPair \
       --template-body file://create-dev-env.yml
+
+## Connect to instance
+
+Use AWS CLI or AWS Console to retrive the public DNS for the
+instance created by the stack.
+
+    export publicDns=$(aws cloudformation describe-stacks \
+      --stack-name dev-machine | jq -r \
+      '.Stacks[].Outputs[] | select(.OutputKey == "PublicDnsName") | .OutputValue')
+
+    # ssh
+    ssh -i key.pem "ubuntu@${publicDns}"
+
+    # mosh
+    mosh --ssh "ssh -i key.pem" "ubuntu@${publicDns}"
