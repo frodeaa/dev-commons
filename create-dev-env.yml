@@ -44,6 +44,17 @@ Parameters:
     Description: URL to aws-cfn-boostrap to install
     Default: https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
 
+  DotFilesUrl:
+    Type: CommaDelimitedList
+    Description: |
+      URLs to dotfiles to download and add to home directory
+      The files downloaded will be rename to be prefixed with '.'
+    Default:
+      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/bash_aliases
+      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitconfig
+      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitignore
+      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/tmux.conf
+
 Mappings:
 
   # These are the latest Ubuntu Server 18.04 LTS (HVM) as of 2018-09
@@ -122,6 +133,7 @@ Resources:
           default:
             - config
             - install_docker
+            - install_custom_dotfiles
 
         config:
           files:
@@ -177,6 +189,15 @@ Resources:
               command: sudo usermod -aG docker ubuntu
             i_verify_installation:
               command: sudo systemctl status docker && docker run hello-world
+
+        install_custom_dotfiles:
+          packages:
+            apt:
+              jg: []
+           commands:
+             download_dot_files:
+               command: !Sub |
+                 echo '${DotFilesUrl}'
 
     CreationPolicy:
       ResourceSignal:
