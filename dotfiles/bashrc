@@ -1,0 +1,10 @@
+set -o vi                        # use Vi mode in Bash
+shopt -s histappend              # append new history items to .bash_history
+
+g=git                            # why not?
+
+HISTFILESIZE=10000               # increate history file size (defualt is 500)
+HISTSIZE="${HISTFILESIZE}"       # increate history size (default is 501)
+
+export HISTFILESIZE
+export HISTSIZE
