@@ -20,4 +20,12 @@ To get an SSH key pair that can be used to access the EC2 host created by the
 The ```.pem``` created contains the private key for the SSH key pair. Make sure to
 keep it safe and secure.
 
-##
+## Setup
+
+Use the ```create-dev-env.yml``` CloudFormation template to create the EC2 instance.
+
+    # see https://docs.aws.amazon.com/cli/latest/reference/cloudformation/create-stack.html
+    aws cloudformation create-stack \
+      --stack-name dev-machine \
+      --parameters ParameterKey=KeyName,ParameterValue=MyKeyPair \
+      --template-body file://create-dev-env.yml
