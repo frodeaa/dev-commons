@@ -49,11 +49,11 @@ Parameters:
     Description: |
       URLs to dotfiles to download and add to home directory
       The files downloaded will be rename to be prefixed with '.'
-    Default:
-      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/bash_aliases
-      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitconfig
-      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitignore
-      - https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/tmux.conf
+    Default: |
+      https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/bash_aliases,
+      https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitconfig,
+      https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/gitignore,
+      https://raw.githubusercontent.com/frodeaa/dev-commons/master/dotfiles/tmux.conf
 
 Mappings:
 
