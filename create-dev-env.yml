@@ -81,6 +81,9 @@ Resources:
           FromPort: 60000
           ToPort: 61000
           CidrIpv6: !Ref CidrIpv6
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-Instance
 
   Instance:
     Type: AWS::EC2::Instance
@@ -107,6 +110,9 @@ Resources:
           cfn-signal --resource EC2Instance \
                      --stack "${AWS::StackName}"
                      --region "${AWS::Region}" -e $?
+      Tags:
+        - Key: Name
+          Value: !Ref 'AWS::StackName'
     Metadata:
       AWS::CloudFormation::Init:
         # see https://garbe.io/blog/2017/01/20/install-docker-1.13-on-aws-via-cloudformation/
