@@ -117,6 +117,12 @@ Resources:
       AWS::CloudFormation::Init:
         # see https://garbe.io/blog/2017/01/20/install-docker-1.13-on-aws-via-cloudformation/
         # for example on how latest version of docker can be installed
+
+        configSets:
+          default:
+            - config
+            - install_docker
+
         config:
           files:
             /etc/cfn/cfn-hup.conf:
@@ -150,6 +156,28 @@ Resources:
                 files:
                   - /etc/cfn/cfn-hup.conf
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
+
+        install_docker:
+          commands:
+            a_update_upgrade_apt_get:
+              command: sudo apt-get update && sudo apt-get -y upgrade
+            b_get_certificates:
+              command: sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+            c_add_docker_pgp_key:
+              command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            d_add_docker_stable_repo:
+              command: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            e_update_apt_get:
+              command: sudo apt-get update
+            f_install_docker:
+              command: sudo apt -y install docker-ce
+            g_create_service:
+              command: sudo service docker start
+            h_add_ubuntu_user_to_docker_group:
+              command: sudo usermod -aG docker ubuntu
+            i_verify_installation:
+              command: sudo systemctl status docker && docker run hello-world
+
     CreationPolicy:
       ResourceSignal:
         Timeout: PT5M
