@@ -1,0 +1,7 @@
+*.swp
+*.iml
+*.egg-info
+target
+node_modules
+.gradle
+.idea

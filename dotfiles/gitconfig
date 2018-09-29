@@ -1,0 +1,21 @@
+[user]
+  name = Frode Aannevik
+  email = frode@dintero.com
+  signingkey = CFFA2237F1526F8F8024EAC918F1D5F4837B359D
+
+[color]
+  ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  pager = true
+
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  df = diff
+  br = branch
+  log1 = log --pretty=oneline --abbrev-commit
+
