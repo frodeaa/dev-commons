@@ -1,4 +1,5 @@
 *.swp
+.*.swp
 *.iml
 *.egg-info
 target
