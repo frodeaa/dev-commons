@@ -64,6 +64,8 @@ Mappings:
       AMI: ami-00035f41c82244dab
     eu-central-1:
       AMI: ami-0bdf93799014acdc4
+    eu-north-1:
+      AMI: ami-440d823a
 
 Resources:
 
